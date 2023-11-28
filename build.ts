@@ -2,32 +2,24 @@
 
 import * as path from "std/path";
 import * as sass from "sass";
-import ctp from "npm:@catppuccin/palette";
+import ctp from "npm:@rose-pine/palette";
 
 const builder = (flavor: string, accent: string) => `
-@import "@catppuccin/palette/scss/${flavor}";
+@import "@rose-pine/palette/scss/${flavor}";
 $accent: $${accent};
-$isDark: ${flavor !== "latte"};
+$isDark: ${flavor !== "dawn"};
 @import "theme";
 `;
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 
 const accents = [
-  "rosewater",
-  "flamingo",
-  "pink",
-  "mauve",
-  "red",
-  "maroon",
-  "peach",
-  "yellow",
-  "green",
-  "teal",
-  "sky",
-  "sapphire",
-  "blue",
-  "lavender",
+  "rose",
+  "love",
+  "gold",
+  "pine",
+  "foam",
+  "iris",
 ];
 
 Deno.mkdirSync(path.join(__dirname, "dist"), { recursive: true });
@@ -44,7 +36,7 @@ for (const flavor of flavors) {
     });
 
     Deno.writeTextFileSync(
-      path.join(__dirname, "dist", `theme-catppuccin-${flavor}-${accent}.css`),
+      path.join(__dirname, "dist", `theme-rose-pine-${flavor}-${accent}.css`),
       result.css,
     );
   }
@@ -88,7 +80,7 @@ THEMES = ${
     flavors
       .map((f) =>
         accents
-          .map((a) => `catppuccin-${f}-${a}`)
+          .map((a) => `rose-pine-${f}-${a}`)
           .join(",")
       ).join(",")
   }
